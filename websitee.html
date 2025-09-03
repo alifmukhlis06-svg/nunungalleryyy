@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AINNUN Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url("background.jpg") no-repeat center center/cover;
+            background-size: cover;
+            background-attachment: fixed;
+            text-align: center;
+            color: white;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+        .header img {
+            width: 500px;
+            height: auto;
+        }
+        .side {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+        .side img {
+            width: 300px;
+            height: auto;
+        }
+        .header h1 {
+            margin: 10px 0;
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+        .nav-bar {
+            padding: 15px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .nav-bar a {
+            text-decoration: none;
+            color: #663399;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 10px 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            padding: 20px;
+        }
+        .gallery img, .gallery video {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .timer-container {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            display: inline-block;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #5D3A9B;
+        }
+        .timer {
+            font-size: 2rem;
+            color: #663399;
+        }
+        /* Style for the Wish Page */
+        .wish-container {
+            text-align: center;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .wish-message {
+            font-size: 24px;
+            width: 80%;
+            max-width: 600px;
+            line-height: 1.6;
+            font-weight: bold;
+            color: #663399;
+        }
+        /* Style for Buttons */
+        .wish-button, .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 20px;
+            color: white;
+            background-color: #ff4b5c;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+        .wish-button:hover, .back-button:hover {
+            background-color: #ff1e42;
+        }
+        h1, .message, .wish-message {
+            text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <img src="AINNUN.png" alt="Company Logo">
+    </header>
+
+    <div class="nav-bar">
+        <a href="asd.html">Home</a>
+        <a href="photo.html">Photo</a>
+        <a href="video.html">Video</a>
+        <a href="more.html">More</a>
+    </div>
+
+    <div class="side">
+        <img src="kanan.png" alt="Left Image">
+        <h1>How long we've been together?</h1>
+        <img src="kiri.png" alt="Right Image">
+    </div>
+
+    <div class="timer-container">
+        <div class="timer" id="countdown"></div>
+    </div>
+
+    <script>
+        function updateTimer() {
+            const startDate = new Date("September 4, 2023 00:00:00");
+            const now = new Date();
+
+            let years = now.getFullYear() - startDate.getFullYear();
+            let months = now.getMonth() - startDate.getMonth();
+            let days = now.getDate() - startDate.getDate();
+            let hours = now.getHours() - startDate.getHours();
+            let minutes = now.getMinutes() - startDate.getMinutes();
+            let seconds = now.getSeconds() - startDate.getSeconds();
+
+            // Adjust if negative
+            if (seconds < 0) {
+                seconds += 60;
+                minutes--;
+            }
+            if (minutes < 0) {
+                minutes += 60;
+                hours--;
+            }
+            if (hours < 0) {
+                hours += 24;
+                days--;
+            }
+            if (days < 0) {
+                const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+                days += prevMonth.getDate();
+                months--;
+            }
+            if (months < 0) {
+                months += 12;
+                years--;
+            }
+
+            document.getElementById("countdown").innerHTML =
+                `${years} Years : ${months} Months : ${days} Days : ${hours} Hrs : ${minutes} Mins : ${seconds} Secs`;
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
+</body>
+</html>
